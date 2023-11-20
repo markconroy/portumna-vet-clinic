@@ -2,6 +2,17 @@ const dialogMenu = document.querySelector(".dialog-menu");
 const dialogMenuCloseButton = document.querySelector(".dialog__menu-close");
 const menuToggle = document.querySelector(".menu-toggle");
 
+function handleCloseDialogMenu() {
+  menuToggle.classList.remove("menu-toggle--open");
+  dialogMenu.classList.add("dialog-menu--closing");
+  setTimeout(() => {
+    dialogMenu.close();
+    dialogMenu.classList.remove("dialog-menu--closing");
+  }, 100);
+  // set the focus to the href of the link that was clicked
+  // this is needed for accessibility
+}
+
 class Menu extends HTMLElement {
   constructor() {
     super();
@@ -34,6 +45,10 @@ class Menu extends HTMLElement {
         </ul>
       </nav>
     `;
+    const menuLinks = this.shadowRoot.querySelectorAll("ul a");
+    menuLinks.forEach((link) => {
+      link.addEventListener("click", handleCloseDialogMenu);
+    });
   }
 }
 
@@ -58,10 +73,5 @@ menuToggle.addEventListener("click", () => {
 //    display: none when the dialog is closed.
 // 3. Close the dialog after 100ms, this is to allow the animation to finish.
 dialogMenuCloseButton.addEventListener("click", () => {
-  menuToggle.classList.remove("menu-toggle--open");
-  dialogMenu.classList.add("dialog-menu--closing");
-  setTimeout(() => {
-    dialogMenu.close();
-    dialogMenu.classList.remove("dialog-menu--closing");
-  }, 100);
+  handleCloseDialogMenu();
 });
