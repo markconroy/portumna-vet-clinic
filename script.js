@@ -26,11 +26,11 @@ class Menu extends HTMLElement {
       </style>
       <nav>
         <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Our Services</a></li>
-          <li><a href="#">Testimonials</a></li>
-          <li><a href="#">Directions</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Our Services</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#location">Directions</a></li>
+          <li><a href="#contact">Contact Us</a></li>
         </ul>
       </nav>
     `;
